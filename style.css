@@ -84,6 +84,53 @@ html {
     line-height: 2;
 }
 
+.tech-stack {
+    margin-top: 150px;
+    overflow: hidden;
+}
+
+.tech-icons-wrapper {
+    display: flex;
+    width: fit-content;
+}
+
+.tech-icons {
+    display: flex;
+    scrollbar-width: none;
+    gap: 12.5px;
+}
+
+.tech-icons-wrapper {
+    display: flex;
+    width: fit-content;
+    animation: scroll 25s linear infinite; /*套用animation*/
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.tech-icon:hover {
+    transform: scale(1.1);
+}
+
+.tech-icons-wrapper:hover {
+    animation-play-state: paused;
+}
+
+.tech-icon {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    margin: 12.5px;
+    transition: transform 0.3s ease; /*add this line*/
+}
+
 .timeline {
     margin-top: 150px;
 }
@@ -240,4 +287,77 @@ html {
 .social-icon svg {
     width: 24px;
     height: 24px;
+}
+
+.typewriter-container {
+    display: flex;
+    justify-content: center;
+  }
+
+.typewriter {
+        border-right: 2px solid black; /* cursor */
+        width: fit-content;
+        animation: blink 0.75s step-end infinite;
+  }
+
+  /* blinking cursor */
+@keyframes blink {
+    50% { border-color: transparent; }
+}
+
+.project-item {
+    flex: 1 1 375px; 
+    min-width: 375px;
+    height: 250px;
+    /* ... */
+}
+
+/* Control hovered card */
+.project-list .project-item:hover {
+    flex: 1 1 0;
+}
+
+/* when list hovered, control "not" hovered cards */
+.project-list:hover .project-item:not(:hover) {
+    flex: 0 0 90px; 
+    min-width: 90px;
+    
+}
+
+.project-item .content { 
+    transition: opacity 0.3s ease;
+}
+
+/* when list hovered, control "not" hovered cards' content */
+.project-list:hover .project-item:not(:hover) .content {
+    opacity: 0;
+}
+
+.project-list:hover .project-item:not(:hover) .title {
+    opacity: 1;
+}
+
+.project-search {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.project-search input {
+    flex: 1;
+    background-color: white;
+    border: 1px solid gainsboro;
+    border-radius: 10px;
+    padding: 12px 18px;
+    font-size: 16px;
+}
+
+.project-search button {
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font-size: 16px;
+    cursor: pointer;
 }

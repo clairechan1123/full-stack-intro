@@ -14,53 +14,77 @@
                 <li class="nav-item"><a href="#home">Home</a></li>
                 <li class="nav-item"><a href="#about">About</a></li>
                 <li class="nav-item"><a href="#projects">Projects</a></li>
+                <li class="nav-item"><a href="#extracurricular">Extracurricular</a></li>
                 <li class="nav-item"><a href="#contact">Get in Touch</a></li>
             </ul>
         </div>
     </nav>
     <section id="home">
-        <h1>Hi, I'm NYCU SDC</h1>
-        <p>NYCU Software Development Club. Core System. Clustron. HPC. Commonground.</p>
+        <h1>Hi, I'm Claire</h1>
+        <div class="typewriter-container">
+            <p class="typewriter"></p>
+        </div>
     </section>
     <section id="about">
         <div class="about-me">
             <img src="profile.jpg" alt="Profile Picture" class="profile-pic">
             <div>
                 <h2>About Me</h2>
-                <p>我們是陽明交大軟體開發社（NYCU SDC），旨在聚集交清人才，<br>
-                    加速推動兩校在資訊領域的發展，同時引領更多的新人成為人才，♾️ 循環。</p>
+                <p>嗨 我是詹晶媛<br>
+                    生於秋末，熱愛盛夏的黑糖剉冰和嚴冬的火鍋加芋頭<br>
+                    資工系，但比起程式更喜歡文字</p>
             </div>
         </div>
         <div class="tech-stack">
             <h2>Tech Stack</h2>
-            <div class="tech-icons">
-                <img src="html.png" alt="HTML5" class="tech-icon">
-                <img src="css.png" alt="CSS3" class="tech-icon">
-                <img src="javascript.png" alt="JavaScript" class="tech-icon">
-                <img src="typescript.png" alt="TypeScript" class="tech-icon">
-                <img src="golang.png" alt="Go" class="tech-icon">
-                <img src="python.png" alt="Python" class="tech-icon">
-                <img src="react.png" alt="React" class="tech-icon">
-                <img src="docker.png" alt="Docker" class="tech-icon">
-                <img src="tailwind.png" alt="Tailwind CSS" class="tech-icon">
-                <img src="git.png" alt="Git" class="tech-icon">
-                <img src="github.png" alt="GitHub" class="tech-icon">
+            <div class="tech-icons-wrapper">
+                <div class="tech-icons">
+                    <img src="html.png" alt="HTML5" class="tech-icon">
+                    <img src="css.png" alt="CSS3" class="tech-icon">
+                    <img src="javascript.png" alt="JavaScript" class="tech-icon">
+                    <img src="typescript.png" alt="TypeScript" class="tech-icon">
+                    <img src="golang.png" alt="Go" class="tech-icon">
+                    <img src="python.png" alt="Python" class="tech-icon">
+                    <img src="react.png" alt="React" class="tech-icon">
+                    <img src="docker.png" alt="Docker" class="tech-icon">
+                    <img src="tailwind.png" alt="Tailwind CSS" class="tech-icon">
+                    <img src="git.png" alt="Git" class="tech-icon">
+                    <img src="github.png" alt="GitHub" class="tech-icon">
+                </div>
+                <div class="tech-icons">
+                    <img src="html.png" alt="HTML5" class="tech-icon">
+                    <img src="css.png" alt="CSS3" class="tech-icon">
+                    <img src="javascript.png" alt="JavaScript" class="tech-icon">
+                    <img src="typescript.png" alt="TypeScript" class="tech-icon">
+                    <img src="golang.png" alt="Go" class="tech-icon">
+                    <img src="python.png" alt="Python" class="tech-icon">
+                    <img src="react.png" alt="React" class="tech-icon">
+                    <img src="docker.png" alt="Docker" class="tech-icon">
+                    <img src="tailwind.png" alt="Tailwind CSS" class="tech-icon">
+                    <img src="git.png" alt="Git" class="tech-icon">
+                    <img src="github.png" alt="GitHub" class="tech-icon">
+                </div>
             </div>
         </div>
         <div class="timeline">
             <h2>Timeline</h2>
             <ul>
-                <li><strong>1992：</strong>交大校園網路策進會 CCCA（SDC 前身）成立</li>
-                <li><strong>2009：</strong>因資訊技術普及校計中設備完善，CCCA 功成身退並宣布結束社團</li>
-                <li><strong>2010：</strong>NBA（NCTU 網路福利社）正式成立，主打技術交流、開源、創新精神</li>
-                <li><strong>2022：</strong>社團更名為「SDC 軟體開發社」，並繼承 CCCA/NBA 歷史與文件</li>
-                <li><strong>2024：</strong>SDC 正式成立</li>
+                <li><strong>2006：</strong>Initial commit: "Hello World!"</li>
+                <li><strong>2013：</strong>Add Elementary school version: bookworm plays hard.</li>
+                <li><strong>2019：</strong>Add Elementary school version: bookworm plays hard.</li>
+                <li><strong>2022：</strong>Error404: sleep not found</li>
+                <li><strong>2025：</strong>NYCUCS Freshman</li>
             </ul>
         </div>
     </section>
     <section id="projects">
-        <h2>Projects</h2>
-        <div class="project-list">
+    <h2>Projects</h2>
+    <div class="project-search">
+        <input type="text" id="project-search-input" placeholder="Search projects...">
+        <button id="project-search-btn">🔎</button>
+    </div> 
+    <div class="project-list">
+            <!--
             <div class="project-item" data-url="https://github.com/NYCU-SDC/full-stack-intro-frontend">
                 <h3>Full Stack Intro.</h3>
                 <p>從零開始認識前後端開發！從環境設定、HTML、CSS、JavaScript 等基礎打好地基，並逐步學習版面切版、網頁動態效果實作，讓大家都能獨立完成屬於自己、能「動起來」的互動式履歷網站。</p>
@@ -83,6 +107,13 @@
                 <p>Clustron 是一個計算機叢集與異質計算管理的可視化解決方案，結合實驗室與課程的實務需求，提供一個可實際運作的解決方案。</p>
                 <p>Created on 2025/04/16</p>
             </div>
+            -->
+        </div>
+    </section>
+    <section id="extracurricular">
+        <h2>Extracurricular</h2>
+        <div class="">
+            
         </div>
     </section>
     <section id="contact">

@@ -1,0 +1,8 @@
+#element {
+	color : red;
+}
+
+#element:hover {
+	color : blue;
+	transition: color 1s ease ;
+}
