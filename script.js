@@ -72,25 +72,25 @@ const projects = [
     "description": "第三屆臺中女中數理科學營，活動長。",
     "date": "2023/07/01-07/03",
     "url": "https://www.instagram.com/tcgs_msc_4th/",
-    "image": ""
+    "image": "數理營.jpg"
   },
   {
     "title": "《迎新》",
     "description": "一中女中數資聯合迎新，活動組。",
     "date": "2023/09/24",
     "url": " ",
-    "image": ""
+    "image": "迎新.jpg"
   },
   {
     "title": "《凰族童軍團》",
     "description": "台中女中凰族童軍團53屆，復社社長。",
     "date": "2023/08",
     "url": "https://www.instagram.com/tcgs_scout/",
-    "image": "迎新露營.jpg"
+    "image": "phoenix.jpg"
   },
   {
     "title": "《龍族凰族迎新露營》",
-    "description": "一中女中童軍團聯合迎新露營，總召。",
+    "description": "一中女中童軍團聯合迎新露營，<br>總召。",
     "date": "2023/11/04-11/05",
     "url": "https://www.instagram.com/tcgs_scout/",
     "image": "迎新露營.jpg"
@@ -106,21 +106,33 @@ const projects = [
 
 const projectsList = document.querySelector(".project-list");
 
+/* === 修改後的 renderProjects (配合電影海報樣式) === */
 function renderProjects(list) {
+    // 安全檢查
+    if (!projectsList) return;
+
     projectsList.innerHTML = list
         .map(p => {
+            // 判斷有沒有圖片，沒有的話就不設背景(會顯示 CSS 預設的深灰色)
+            // 你的資料有些 image 是空字串 ""，這行會處理它
+            const bgStyle = p.image ? `background-image: url('${p.image}');` : '';
+
             return `
-            <div class="project-item" data-url="${p.url}" target="_blank">
-                <h3 class="title">${p.title}</h3>
-                <div class="content">
-                    <p class="meta">${p.date}</p>
-                    <p>${p.description.replace(/\n/g, "<br>")}</p>
+            <div class="project-item" data-url="${p.url}" style="${bgStyle}">
+                <div class="project-content-wrapper">
+                    <h3 class="title">${p.title}</h3>
+                    <span class="meta">${p.date}</span>
+                    
+                    <div class="content">
+                        <p>${p.description.replace(/\n/g, "<br>")}</p>
+                    </div>
                 </div>
-                <div class="project-img" style="background-image: url('${p.image}')"></div>
             </div>
             `;
         })
         .join("");
+
+    // 重新綁定點擊事件 (這行不用改，維持你原本寫好的函式即可)
     attachProjectClickListeners();
 }
 
