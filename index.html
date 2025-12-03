@@ -20,6 +20,8 @@
         </div>
     </nav>
     <section id="home">
+        <div class="shape-blob shape-1"></div>
+        <div class="shape-blob shape-2"></div>
         <h1>Hi, I'm Claire</h1>
         <div class="typewriter-container">
             <p class="typewriter"></p>
@@ -32,7 +34,7 @@
                 <h2>About Me</h2>
                 <p>嗨 我是Claire<br>
                     生於秋末，熱愛盛夏的黑糖剉冰和嚴冬的火鍋加芋頭。<br>
-                    資工系，ENFP，在程式的汪洋大海中載浮載沉。</p>
+                    ENFP，資工系，在程式的汪洋大海中載浮載沉。</p>
             </div>
         </div>
         <div class="tech-stack fade-in-section">
@@ -71,9 +73,9 @@
             <ul>
                 <li><strong>2006：</strong>Initial commit: "Hello World!"</li>
                 <li><strong>2013：</strong>Add Elementary school version: bookworm plays hard.</li>
-                <li><strong>2019：</strong>Add Stella Matutina: girls' marching band.</li>
-                <li><strong>2022：</strong>Add TCGS: Error404 sleep not found</li>
-                <li><strong>2025：</strong>NYCUCS Freshman</li>
+                <li><strong>2019：</strong>Add Stella Matutina version: girls' marching band.</li>
+                <li><strong>2022：</strong>Add TCGS version: Heaven.</li>
+                <li><strong>2025：</strong>NYCUCS Freshman: Error404 sleep not found.</li>
             </ul>
         </div>
     </section>
@@ -112,9 +114,7 @@
     </section>
     <section id="scout">
         <h2>Scout</h2>
-        <div class="scout-life">
-            
-        </div>
+        <div class="scout-accordion"></div>
     </section>
     <section id="contact">
         <h2>Get in Touch</h2>
@@ -147,7 +147,23 @@
             <button type="submit">Send Message</button>
         </form>
     </section>
-
+    <div id="scout-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <div class="modal-body">
+                <div class="modal-img-container">
+                    <img id="modal-img" src="" alt="">
+                </div>
+                <div class="modal-text">
+                    <h2 id="modal-title"></h2>
+                    <p id="modal-date" class="meta"></p>
+                    <div style="width: 50px; height: 2px; background: black; margin: 20px 0; flex-shrink: 0;"></div>
+                    <p id="modal-desc"></p>
+                    <a id="modal-link" href="#" target="_blank" class="modal-btn">Visit Link</a>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>

@@ -71,25 +71,36 @@ const projects = [
     "title": "《數理奇航·宙數迴戰》",
     "description": "第三屆臺中女中數理科學營，活動長。",
     "date": "2023/07/01-07/03",
-    "url": "https://www.instagram.com/tcgs_msc_4th/"
+    "url": "https://www.instagram.com/tcgs_msc_4th/",
+    "image": ""
   },
   {
     "title": "《迎新》",
     "description": "一中女中數資聯合迎新，活動組。",
     "date": "2023/09/24",
-    "url": "https://www.instagram.com/tcgs._.318_/"
+    "url": " ",
+    "image": ""
+  },
+  {
+    "title": "《凰族童軍團》",
+    "description": "台中女中凰族童軍團53屆，復社社長。",
+    "date": "2023/08",
+    "url": "https://www.instagram.com/tcgs_scout/",
+    "image": "迎新露營.jpg"
   },
   {
     "title": "《龍族凰族迎新露營》",
     "description": "一中女中童軍團聯合迎新露營，總召。",
     "date": "2023/11/04-11/05",
-    "url": "https://www.instagram.com/tcgs_scout/"
+    "url": "https://www.instagram.com/tcgs_scout/",
+    "image": "迎新露營.jpg"
   },
   {
     "title": "《𝐈𝐧𝐬𝐨𝐦𝐧𝐢𝐚》",
     "description": "臺中女中數理資優班第12屆成果發表會，總召。",
     "date": "2024/06/12-06/13",
-    "url": "https://www.instagram.com/insomnia_tcgs36th.18/"
+    "url": "https://www.instagram.com/insomnia_tcgs36th.18/",
+    "image": "insomnia.jpg"
   }
 ]
 
@@ -137,83 +148,122 @@ searchInput.addEventListener("keypress", (e) => {
 
 const scout = [
   {
-    "title": "幼童",
-    "description": " ",
-    "date": "2025/09/22",
-    "url": "https://github.com/NYCU-SDC/full-stack-intro-frontend"
+    "title": "Cub Scout 幼童軍",
+    "description": "2019全國第十一次童軍大露營<br><img src='全11.jpg'>",
+    "date": "2014-2019",
+    "url": "https://www.facebook.com/groups/553272231464860",
+    "image": "cub.jpg"
   },
   {
-    "title": "童軍",
-    "description": " ",
-    "date": "2025/08/29",
-    "url": "https://github.com/NYCU-SDC/full-stack-advanced-frontend"
+    "title": "Scout 童軍",
+    "description": "技能考驗營<br><img src='考驗營1.jpg'><br><img src='考驗營2.jpg'>",
+    "date": "2019-2022",
+    "url": "https://www.facebook.com/groups/553272231464860",
+    "image": "scout.jpg"
   },
   {
-    "title": "行義-世大",
-    "description": " ",
-    "date": "2025/05/29",
-    "url": "https://github.com/NYCU-SDC/core-system-frontend"
+    "title": "Venture Scout 行義童軍",
+    "description": "韓國第25屆世界大露營<br><img src='WSJ1.jpg'><br><img src='WSJ2.jpg'><br><img src='WSJ3.jpg'><br><img src='WSJ4.jpg'>",
+    "date": "2022-2025",
+    "url": "https://www.facebook.com/groups/553272231464860",
+    "image": "venture.jpg"
   },
   {
-    "title": "蘭姐-凰族",
-    "description": " 。",
-    "date": "2025/04/16",
-    "url": "https://github.com/NYCU-SDC/clustron-frontend"
+    "title": "Ranger Girl Scout 蘭姐女童軍",
+    "description": "第9屆全國女童軍大露營<br><img src='全9.jpg'>",
+    "date": "2023-2025",
+    "url": "https://www.instagram.com/tcgs_scout/",
+    "image": "ranger.jpg"
   },
   {
-    "title": "羅浮-論壇、菲律賓",
-    "description": " ",
-    "date": "2025/04/16",
-    "url": "https://github.com/NYCU-SDC/clustron-frontend"
+    "title": "Rover Scout 羅浮童軍",
+    "description": "菲律賓Intercultureal Dialogue Workshop<br><img src='DIworkshop.jpg'><br><br>亞太區青年論壇<br><img src='YF1.jpg'><br><img src='YF2.jpg'><br><img src='YF3.jpg'><br><img src='YF4.jpg'>",
+    "date": "2025-",
+    "url": "https://www.instagram.com/apsyftaiwan/",
+    "image": "rover.jpg"
   }
 ]
 
-const scoutlife = document.querySelector(".scout-life");
+const scoutContainer = document.querySelector(".scout-accordion");
 
-function renderScout(scoutlist) {
-    scoutlife.innerHTML = scoutlist
-        .map(p => {
-            return `
-            <div class="scout-item" data-url="${p.url}" target="_blank">
-                <h3 class="title">${p.title}</h3>
-                <div class="content1">
-                    <p>${p.description.replace(/\n/g, "<br>")}</p>
-                    <p class="meta">Created on ${p.date}</p>
-                </div>
-                <div class="scout-img" style="background-image: url('${p.image}')"></div>
+// 3. 渲染函式 (產生手風琴 HTML)
+function renderScout(list) {
+    // 安全檢查：如果 HTML 沒寫這個容器就跳過
+    if (!scoutContainer) return;
+
+    scoutContainer.innerHTML = list.map((p, index) => {
+        // 注意這裡的結構是為了配合手風琴 CSS
+        return `
+        <div class="scout-card" 
+             style="background-image: url('${p.image}');" 
+             onclick="openScoutModal(${index})">
+            
+            <div class="scout-overlay">
+                <h3>${p.title}</h3>
+                <p class="scout-hint">Click for details ↗</p>
             </div>
-            `;
-        })
-        .join("");
-    attachProjectClickListeners();
+        </div>
+        `;
+    }).join("");
 }
 
-// first time load all projects
+// 4. 執行渲染
 renderScout(scout);
 
-function attachProjectClickListeners() {
-    const projectItems = document.querySelectorAll(".project-item");
-    projectItems.forEach(item => {
-        item.addEventListener("click", function() {
-            const url = this.getAttribute("data-url");
-            if (url) {
-                window.open(url, "_blank");
-            }
-        });
+
+/* =========================================
+   Modal 全螢幕視窗邏輯 (不用動)
+   ========================================= */
+const modal = document.getElementById("scout-modal");
+const modalImg = document.getElementById("modal-img");
+const modalTitle = document.getElementById("modal-title");
+const modalDate = document.getElementById("modal-date");
+const modalDesc = document.getElementById("modal-desc");
+const modalLink = document.getElementById("modal-link");
+const closeModalBtn = document.querySelector(".close-modal");
+
+// 開啟視窗函式
+window.openScoutModal = function(index) {
+    const item = scout[index];
+    
+    // 把資料填進去
+    modalImg.src = item.image;
+    modalTitle.textContent = item.title;
+    modalDate.textContent = item.date;
+    // 處理換行符號
+    modalDesc.innerHTML = item.description ? item.description.replace(/\n/g, "<br>") : "";
+    
+    // 如果有網址才顯示按鈕
+    if (item.url && item.url.trim() !== "") {
+        modalLink.href = item.url;
+        modalLink.style.display = "inline-block";
+    } else {
+        modalLink.style.display = "none";
+    }
+
+    modal.classList.add("active");
+    document.body.style.overflow = "hidden"; // 鎖住背景滾動
+
+    document.querySelector(".modal-text").scrollTop = 0;
+}
+
+// 關閉視窗函式
+function closeScoutModal() {
+    if(modal) modal.classList.remove("active");
+    document.body.style.overflow = "auto";
+}
+
+// 綁定關閉按鈕
+if (closeModalBtn) {
+    closeModalBtn.addEventListener("click", closeScoutModal);
+}
+// 點擊背景關閉
+if (modal) {
+    modal.addEventListener("click", (e) => {
+        if (e.target === modal) closeScoutModal();
     });
 }
 
-function attachProjectClickListeners() {
-    const projectItems = document.querySelectorAll(".project-item");
-    projectItems.forEach(item => {
-        item.addEventListener("click", function() {
-            const url = this.getAttribute("data-url");
-            if (url) {
-                window.open(url, "_blank");
-            }
-        });
-    });
-}
 
 const sections = document.querySelectorAll("section");
 const navLinks = document.querySelectorAll(".nav-item a");

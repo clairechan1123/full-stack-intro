@@ -50,6 +50,14 @@ nav {
     flex-direction: column;
     justify-content: center;
     height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+#home h1, 
+#home .typewriter-container {
+    position: relative;
+    z-index: 10;
 }
 
 #home h1 {
@@ -61,6 +69,42 @@ nav {
     font-size: 25px;
 }
 
+.shape-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: 0;
+    opacity: 0.6;
+    animation: floatAnimation 20s infinite alternate ease-in-out;
+}
+
+.shape-1 {
+    width: 500px;
+    height: 500px;
+    background: #e0e0ff;
+    top: -150px;
+    left: -150px;
+    animation-delay: 0s;
+}
+
+.shape-2 {
+    width: 400px;
+    height: 400px;
+    background: #ffe0e0;
+    bottom: -100px;
+    right: -100px;
+    animation-delay: -5s;
+    animation-duration: 15s;
+}
+
+/* 漂浮動畫 */
+@keyframes floatAnimation {
+    0% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(40px, 60px) scale(1.1); }
+    100% { transform: translate(-30px, 20px) scale(0.9); }
+}
+
+    
 /* About */
 
 #about {
@@ -252,45 +296,184 @@ nav {
     margin-bottom: 25px;
 }
 
-.scout-life {
-    display: flex;
-    overflow-x: scroll;
-    scrollbar-width: none;
-    gap: 25px;
-    padding: 15px;
-    margin: -15px;
+/* =========================================
+   Scout Section: 手風琴特效 (Accordion)
+   ========================================= */
+/* 容器：設定高度與排列方式 */
+.scout-accordion {
+    display: flex;       
+    width: 100%;
+    height: 500px;       /* 區塊高度，可依需求調整 */
+    gap: 10px;           
+    padding: 0 20px;     
+    overflow: hidden;    
 }
 
-.scout-item {
-    flex: 1 1 375px; 
-    min-width: 375px;
-    height: 250px;
-
-    background-color: white;
-    border-radius: 16px;
-    padding: 35px;
+/* 卡片本體 */
+.scout-card {
+    position: relative;
+    height: 100%;
+    border-radius: 20px; 
     cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+    flex: 1;             /* 【關鍵】預設大家平分寬度 */
+    
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    transition: flex 0.6s cubic-bezier(0.25, 1, 0.5, 1); /* 平滑伸縮動畫 */
     overflow: hidden;
 }
 
-/* Control hovered card */
-.scout-life .scout-item:hover {
-    flex: 1 1 0;
+/* 當滑鼠移到某張卡片時，它變寬 (變 5 份)，其他的維持 1 份 */
+.scout-card:hover {
+    flex: 5; 
 }
 
-/* when list hovered, control "not" hovered cards */
-.scout-life:hover .scout-item:not(:hover) {
-    flex: 0 0 90px; 
-    min-width: 90px;
-    
-}
-
-.scout-item .content { 
+/* 黑色遮罩 (漸層) - 讓文字清楚顯示 */
+.scout-overlay {
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* 內容靠下對齊 */
+    padding: 30px;
+    opacity: 0.9;
     transition: opacity 0.3s ease;
+}
+
+/* 標題樣式 */
+.scout-card h3 {
+    color: white;
+    font-size: 24px;
+    white-space: nowrap; /* 防止換行 */
+    transition: all 0.4s ease;
+    
+    /* 預設狀態：文字轉 90 度直排，非常有藝術感且省空間 */
+    transform: rotate(-90deg);
+    transform-origin: bottom left;
+    margin-bottom: 50px;
+    margin-left: 10px;
+}
+
+/* 展開狀態(Hover時)：文字轉正、變大 */
+.scout-card:hover h3 {
+    transform: rotate(0deg);
+    font-size: 32px;
+    margin-bottom: 10px;
+    margin-left: 0;
+}
+
+/* 提示文字 (Click for details) */
+.scout-hint {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+    opacity: 0; /* 預設隱藏 */
+    transform: translateY(20px);
+    transition: all 0.4s ease 0.1s; /* 延遲一點點出現 */
+}
+
+.scout-card:hover .scout-hint {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* =========================================
+   Modal 全螢幕視窗樣式 (點擊後出現的畫面)
+   ========================================= */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    padding: 20px;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background: white;
+    width: 90%;
+    max-width: 900px;
+    height: 80vh;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    animation: zoomIn 0.3s ease;
+}
+
+.modal-body {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.modal-img-container {
+    flex: 1.2;
+    height: 100%;
+    background-color: black;
+}
+
+.modal-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.modal-text {
+    flex: 0.8;
+    padding: 40px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-text img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin: 15px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px; right: 20px;
+    font-size: 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.modal-btn {
+    display: inline-block;
+    background: black;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    width: fit-content;
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
 }
 
 
