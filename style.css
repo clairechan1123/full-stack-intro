@@ -3,6 +3,10 @@
     padding: 0;
 }
 
+body {
+    background-color: #f5f5f7;
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -10,6 +14,7 @@ html {
 /* Navigation Bar */
 
 nav {
+    background-color: #f5f5f7;
     position: fixed;
     width: 100%;
     height: 60px;
@@ -37,16 +42,14 @@ nav {
     color: gray;
 }
 
-html {
-    scroll-behavior: smooth;
-}
+/* Home */
 
 #home {
-    text-align: center;  /* 文字水平置中 */
+    text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;  /* 垂直置中 */
-    height: 100vh;  /* 佔滿整個畫面 */
+    justify-content: center;
+    height: 100vh;
 }
 
 #home h1 {
@@ -58,12 +61,14 @@ html {
     font-size: 25px;
 }
 
+/* About */
+
 #about {
     padding: 80px;
 }
 
 .profile-pic {
-    border-radius: 50%; /* 圓形 */
+    border-radius: 50%;
     width: 250px;
     height: 250px;
 }
@@ -92,6 +97,7 @@ html {
 .tech-icons-wrapper {
     display: flex;
     width: fit-content;
+    animation: scroll 25s linear infinite;
 }
 
 .tech-icons {
@@ -100,19 +106,13 @@ html {
     gap: 12.5px;
 }
 
-.tech-icons-wrapper {
-    display: flex;
-    width: fit-content;
-    animation: scroll 25s linear infinite; /*套用animation*/
-}
-
-@keyframes scroll {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-50%);
-    }
+.tech-icon {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    margin: 12.5px;
+    /* flex-shrink: 0; */
+    transition: transform 0.3s ease;
 }
 
 .tech-icon:hover {
@@ -122,13 +122,13 @@ html {
 .tech-icons-wrapper:hover {
     animation-play-state: paused;
 }
-
-.tech-icon {
-    width: 100px;
-    height: 100px;
-    object-fit: contain;
-    margin: 12.5px;
-    transition: transform 0.3s ease; /*add this line*/
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
 }
 
 .timeline {
@@ -144,6 +144,8 @@ html {
     line-height: 2;
 }
 
+/* Projects */
+
 #projects {
     padding: 80px;
 }
@@ -153,57 +155,146 @@ html {
     margin-bottom: 25px;
 }
 
+.project-search {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.project-search input {
+    flex: 1;
+    background-color: white;
+    border: 1px solid gainsboro;
+    border-radius: 10px;
+    padding: 12px 18px;
+    font-size: 16px;
+}
+
+.project-search button {
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
 .project-list {
     display: flex;
     overflow-x: scroll;
     scrollbar-width: none;
     gap: 25px;
+    padding: 15px;
+    margin: -15px;
 }
 
 .project-item {
-    flex: 0 0 375px; /* grow, shrink, basis */
+    flex: 1 1 375px; 
+    min-width: 375px;
+    height: 250px;
+
     background-color: white;
     border-radius: 16px;
     padding: 35px;
-    cursor: pointer; /* 滑鼠移上去變成手指 */
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    overflow: hidden;
 }
+
+/* Control hovered card */
+.project-list .project-item:hover {
+    flex: 1 1 0;
+}
+
+/* when list hovered, control "not" hovered cards */
+.project-list:hover .project-item:not(:hover) {
+    flex: 0 0 90px; 
+    min-width: 90px;
+    
+}
+
+.project-item .content { 
+    transition: opacity 0.3s ease;
+}
+
+/* when list hovered, control "not" hovered cards' content */
+.project-list:hover .project-item:not(:hover) .content {
+    opacity: 0;
+}
+
 
 .project-item h3 {
     font-size: 22.5px;
     margin-bottom: 12.5px;
-    background-color: transparent;
 }
 
 .project-item p {
     font-size: 17px;
     line-height: 2;
-    background-color: transparent;
-}
-
-.project-list {
-    /* ... */
-    padding: 15px; /* 讓陰影效果不會被截斷 */
-    margin: -15px;
-}
-
-.project-item {
-    /* ... */
-    display: flex;
-    flex-direction: column;
-    min-height: 250px;
-    /* 加上陰影，向下 4px、模糊 6px、10% 透明度的黑色 */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-}
-
-.project-item:hover {
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
-    transform: translateY(-3px); /* 往上移動 */
 }
 
 .project-item p:last-child {
-    margin-top: auto; /* 對齊底部 */
+    margin-top: auto;
 }
+
+/*scout*/
+
+#scout {
+    padding: 80px;
+}
+
+#scout h2 {
+    font-size: 50px;
+    margin-bottom: 25px;
+}
+
+.scout-life {
+    display: flex;
+    overflow-x: scroll;
+    scrollbar-width: none;
+    gap: 25px;
+    padding: 15px;
+    margin: -15px;
+}
+
+.scout-item {
+    flex: 1 1 375px; 
+    min-width: 375px;
+    height: 250px;
+
+    background-color: white;
+    border-radius: 16px;
+    padding: 35px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+/* Control hovered card */
+.scout-life .scout-item:hover {
+    flex: 1 1 0;
+}
+
+/* when list hovered, control "not" hovered cards */
+.scout-life:hover .scout-item:not(:hover) {
+    flex: 0 0 90px; 
+    min-width: 90px;
+    
+}
+
+.scout-item .content { 
+    transition: opacity 0.3s ease;
+}
+
+
+/* Contact */
 
 #contact {
     padding: 80px;
@@ -293,7 +384,6 @@ html {
     display: flex;
     justify-content: center;
   }
-
 .typewriter {
         border-right: 2px solid black; /* cursor */
         width: fit-content;
@@ -301,63 +391,56 @@ html {
   }
 
   /* blinking cursor */
-@keyframes blink {
+  @keyframes blink {
     50% { border-color: transparent; }
+  }
+
+  .nav-item {
+    position: relative;
 }
 
-.project-item {
-    flex: 1 1 375px; 
-    min-width: 375px;
-    height: 250px;
+.nav-item a {
     /* ... */
+    display: block;
+    padding-bottom: 5px;
 }
 
-/* Control hovered card */
-.project-list .project-item:hover {
-    flex: 1 1 0;
-}
-
-/* when list hovered, control "not" hovered cards */
-.project-list:hover .project-item:not(:hover) {
-    flex: 0 0 90px; 
-    min-width: 90px;
-    
-}
-
-.project-item .content { 
-    transition: opacity 0.3s ease;
-}
-
-/* when list hovered, control "not" hovered cards' content */
-.project-list:hover .project-item:not(:hover) .content {
-    opacity: 0;
-}
-
-.project-list:hover .project-item:not(:hover) .title {
-    opacity: 1;
-}
-
-.project-search {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 30px;
-}
-
-.project-search input {
-    flex: 1;
-    background-color: white;
-    border: 1px solid gainsboro;
-    border-radius: 10px;
-    padding: 12px 18px;
-    font-size: 16px;
-}
-
-.project-search button {
+.nav-item a.active::after {
+    content: "";
+    position: absolute;
+    bottom: 0; /* 距離父元素底部 0px */
+    left: 0;   /* 距離父元素左邊 0px */
+    right: 0;  /* 距離父元素右邊 0px */
+    height: 2px;
     background-color: black;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    padding: 12px 24px;
-    font-size: 16px;
-    cursor: pointer;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        transform: scaleX(0);
+    }
+    to {
+        transform: scaleX(1);
+    }
+}
+
+#home,
+#projects,
+#scout,
+#contact,
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+#home.visible,
+#about.visible,
+#projects.visible,
+#scout.visible,
+#contact.visible,
+.fade-in-section.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
